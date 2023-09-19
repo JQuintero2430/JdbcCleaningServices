@@ -1,4 +1,4 @@
 package com.cleaningservices.daoImpl;
 
-public class UsuariosDAOImpl {
+public class OrdenCompraDAOImpl {
 }
