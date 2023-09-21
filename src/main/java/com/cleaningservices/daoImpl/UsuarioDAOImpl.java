@@ -1,31 +1,21 @@
 package com.cleaningservices.daoImpl;
 
-import com.cleaningservices.dao.IDAO;
+import com.cleaningservices.dao.IInsertar;
+import com.cleaningservices.dao.IMostrarData;
 import com.cleaningservices.entity.UsuarioEntity;
-import com.cleaningservices.utilities.Constant;
+import com.cleaningservices.utilities.Connector;
 
 import java.sql.*;
 
-public class UsuarioDAOImpl implements IDAO<UsuarioEntity> {
-
-    private final String URL = Constant.URL;
-    private final String USER = Constant.USER;
-    private final String PASSWORD = Constant.PASSWORD;
-    private Connection connection = null;
-
-    private Connection getConnection() throws SQLException {
-        if (connection == null || connection.isClosed()) {
-            connection = DriverManager.getConnection(URL, USER, PASSWORD);
-        }
-        return connection;
-    }
+public class UsuarioDAOImpl implements IInsertar<UsuarioEntity>, IMostrarData {
+    Connector connector = new Connector();
 
     @Override
     public void insertar(UsuarioEntity usuario) {
         String queryAddUsuario = "INSERT INTO usuario (NOMBRE, APELLIDO_PATERNO, APELLIDO_MATERNO, " +
                 "EMAIL, NUMERO_TELEFONO, FECHA_NACIMIENTO) VALUES (?, ?, ?, ?)";
 
-        try (PreparedStatement statement = getConnection().prepareStatement(queryAddUsuario)) {
+        try (PreparedStatement statement = connector.getConnection().prepareStatement(queryAddUsuario)) {
             statement.setString(1, usuario.getNombreUsuario());
             statement.setString(2, usuario.getApellidoPaternoUsuario());
             statement.setString(3, usuario.getApellidoMaternoUsuario());
@@ -41,7 +31,7 @@ public class UsuarioDAOImpl implements IDAO<UsuarioEntity> {
     public void mostrarData() {
         String queryMostrarData = "SELECT * FROM usuario limit 20";
 
-        try (Statement statement = getConnection().createStatement();
+        try (Statement statement = connector.getConnection().createStatement();
              ResultSet resultSet = statement.executeQuery(queryMostrarData)) {
             System.out.println("ID :  DATOS DEL USUARIO");
             while (resultSet.next()) {
