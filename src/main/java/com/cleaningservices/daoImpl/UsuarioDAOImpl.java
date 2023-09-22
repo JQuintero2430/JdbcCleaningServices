@@ -1,13 +1,13 @@
 package com.cleaningservices.daoImpl;
 
 import com.cleaningservices.dao.IInsertar;
-import com.cleaningservices.dao.IMostrarData;
+import com.cleaningservices.dao.IMostrarTabla;
 import com.cleaningservices.entity.UsuarioEntity;
 import com.cleaningservices.utilities.Connector;
 
 import java.sql.*;
 
-public class UsuarioDAOImpl implements IInsertar<UsuarioEntity>, IMostrarData {
+public class UsuarioDAOImpl implements IInsertar<UsuarioEntity>, IMostrarTabla {
     Connector connector = new Connector();
 
     @Override
@@ -28,7 +28,7 @@ public class UsuarioDAOImpl implements IInsertar<UsuarioEntity>, IMostrarData {
     }
 
     @Override
-    public void mostrarData() {
+    public void mostrarTabla() {
         String queryMostrarData = "SELECT * FROM usuario limit 20";
 
         try (Statement statement = connector.getConnection().createStatement();

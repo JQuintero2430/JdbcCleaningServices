@@ -5,16 +5,16 @@ public class ProductoEntity {
     private String nombreProducto;
     private String categoriaProducto;
     private String medidaProducto;
-    private String precioProducto;
+    private double precioProducto;
 
-    public ProductoEntity(String nombreProducto, String categoriaProducto, String medidaProducto, String precioProducto) {
+    public ProductoEntity(String nombreProducto, String categoriaProducto, String medidaProducto, double precioProducto) {
         this.nombreProducto = nombreProducto;
         this.categoriaProducto = categoriaProducto;
         this.medidaProducto = medidaProducto;
         this.precioProducto = precioProducto;
     }
 
-    public ProductoEntity(int idProducto, String nombreProducto, String categoriaProducto, String medidaProducto, String precioProducto) {
+    public ProductoEntity(int idProducto, String nombreProducto, String categoriaProducto, String medidaProducto, double precioProducto) {
         this.idProducto = idProducto;
         this.nombreProducto = nombreProducto;
         this.categoriaProducto = categoriaProducto;
@@ -54,11 +54,11 @@ public class ProductoEntity {
         this.medidaProducto = medidaProducto;
     }
 
-    public String getPrecioProducto() {
+    public double getPrecioProducto() {
         return precioProducto;
     }
 
-    public void setPrecioProducto(String precioProducto) {
+    public void setPrecioProducto(double precioProducto) {
         this.precioProducto = precioProducto;
     }
 }

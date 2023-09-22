@@ -73,8 +73,8 @@ public class OrdenCompraEntity {
         this.cantidadOrdenCompra = cantidadOrdenCompra;
     }
 
-    public Date getFechaOrdenCompra() {
-        return fechaOrdenCompra;
+    public java.sql.Date getFechaOrdenCompra() {
+        return (java.sql.Date) fechaOrdenCompra;
     }
 
     public void setFechaOrdenCompra(Date fechaOrdenCompra) {

@@ -3,20 +3,20 @@ package com.cleaningservices.entity;
 public class EmpleadoEntity {
 
     private int idEmpleado;
-    private int idUsuario;
     private String posicionEmpleado;
     private String rolEmpleado;
     private String tipoDocumentoEmpleado;
     private long numeroDocumentoEmpleado;
+    private int idUsuario;
 
-    public EmpleadoEntity(int idUsuario, String posicionEmpleado, String rolEmpleado, String tipoDocumentoEmpleado, long numeroDocumentoEmpleado) {
+    public EmpleadoEntity( String posicionEmpleado, String rolEmpleado, String tipoDocumentoEmpleado, long numeroDocumentoEmpleado,int idUsuario) {
         this.posicionEmpleado = posicionEmpleado;
         this.rolEmpleado = rolEmpleado;
         this.tipoDocumentoEmpleado = tipoDocumentoEmpleado;
         this.numeroDocumentoEmpleado = numeroDocumentoEmpleado;
     }
 
-    public EmpleadoEntity(int idEmpleado, int idUsuario, String posicionEmpleado, String rolEmpleado, String tipoDocumentoEmpleado, long numeroDocumentoEmpleado) {
+    public EmpleadoEntity(int idEmpleado, String posicionEmpleado, String rolEmpleado, String tipoDocumentoEmpleado, long numeroDocumentoEmpleado, int idUsuario) {
         this.idEmpleado = idEmpleado;
         this.posicionEmpleado = posicionEmpleado;
         this.rolEmpleado = rolEmpleado;

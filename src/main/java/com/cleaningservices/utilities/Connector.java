@@ -5,7 +5,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Connector {
-
     DataBaseDetails dataBaseDetails = new DataBaseDetails();
     private Connection connection = null;
 
