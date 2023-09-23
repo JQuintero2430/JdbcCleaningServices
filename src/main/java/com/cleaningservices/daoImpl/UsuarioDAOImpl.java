@@ -13,7 +13,7 @@ public class UsuarioDAOImpl implements IInsertar<UsuarioEntity>, IMostrarTabla {
     @Override
     public void insertar(UsuarioEntity usuario) {
         String queryAddUsuario = "INSERT INTO usuario (NOMBRE, APELLIDO_PATERNO, APELLIDO_MATERNO, " +
-                "EMAIL, NUMERO_TELEFONO, FECHA_NACIMIENTO) VALUES (?, ?, ?, ?)";
+                "EMAIL, NUMERO_TELEFONO, FECHA_NACIMIENTO) VALUES (?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement statement = connector.getConnection().prepareStatement(queryAddUsuario)) {
             statement.setString(1, usuario.getNombreUsuario());
@@ -21,7 +21,14 @@ public class UsuarioDAOImpl implements IInsertar<UsuarioEntity>, IMostrarTabla {
             statement.setString(3, usuario.getApellidoMaternoUsuario());
             statement.setString(4, usuario.getEmailUsuario());
             statement.setLong(5, usuario.getTelefonoUsuario());
+            statement.setDate(6, Date.valueOf(usuario.getFechaNacimientoUsuario()));
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println("Error SQL: " + e.getMessage());
+            e.printStackTrace();
         } catch (Exception e) {
+            System.out.println("Error General: " + e.getMessage());
             e.printStackTrace();
         }
 
@@ -43,7 +50,11 @@ public class UsuarioDAOImpl implements IInsertar<UsuarioEntity>, IMostrarTabla {
                         resultSet.getLong("NUMERO_TELEFONO") + " " +
                         resultSet.getDate("FECHA_NACIMIENTO"));
             }
+        } catch (SQLException e) {
+            System.out.println("Error SQL: " + e.getMessage());
+            e.printStackTrace();
         } catch (Exception e) {
+            System.out.println("Error General: " + e.getMessage());
             e.printStackTrace();
         }
 

@@ -7,6 +7,7 @@ import com.cleaningservices.utilities.Connector;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 public class OrdenCompraDAOImpl implements IInsertar<OrdenCompraEntity>, IMostrarTabla {
@@ -25,7 +26,12 @@ public class OrdenCompraDAOImpl implements IInsertar<OrdenCompraEntity>, IMostra
             statement.setDate(5, entidad.getFechaOrdenCompra());
             statement.setInt(6, entidad.getMetodoPagoIdOrdenCompra());
             statement.setDouble(7, entidad.getPrecioOrdenCompra());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error SQL: " + e.getMessage());
+            e.printStackTrace();
         } catch (Exception e) {
+            System.out.println("Error General: " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -47,7 +53,11 @@ public class OrdenCompraDAOImpl implements IInsertar<OrdenCompraEntity>, IMostra
                         resultSet.getInt("METODO_PAGO_ID") + " " +
                         resultSet.getDouble("PRECIO"));
             }
+        } catch (SQLException e) {
+            System.out.println("Error SQL: " + e.getMessage());
+            e.printStackTrace();
         } catch (Exception e) {
+            System.out.println("Error General: " + e.getMessage());
             e.printStackTrace();
         }
     }

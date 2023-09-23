@@ -1,9 +1,19 @@
 package com.cleaningservices;
 
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+import com.cleaningservices.daoImpl.UsuarioDAOImpl;
+import com.cleaningservices.entity.UsuarioEntity;
+
+import java.time.LocalDate;
+
 public class Main {
     public static void main(String[] args) {
+        UsuarioDAOImpl usuarioDao = new UsuarioDAOImpl();
 
+        UsuarioEntity usuario = new UsuarioEntity("Liz", "Quintero",
+                "Suarez", "ljfa@hotmail", 3206789535L,
+                LocalDate.of(1993,11, 30));
+
+        usuarioDao.insertar(usuario);
+        usuarioDao.mostrarTabla();
     }
 }

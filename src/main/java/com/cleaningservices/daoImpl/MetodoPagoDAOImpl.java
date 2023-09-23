@@ -7,6 +7,7 @@ import com.cleaningservices.utilities.Connector;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 public class MetodoPagoDAOImpl implements IInsertar<MetodoPagoEntity>, IMostrarTabla {
@@ -18,7 +19,12 @@ public class MetodoPagoDAOImpl implements IInsertar<MetodoPagoEntity>, IMostrarT
 
         try (PreparedStatement statement = connector.getConnection().prepareStatement(queryAddMetodoPago)) {
             statement.setString(1, entidad.getNombreMetodoPago());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error SQL: " + e.getMessage());
+            e.printStackTrace();
         } catch (Exception e) {
+            System.out.println("Error General: " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -34,7 +40,11 @@ public class MetodoPagoDAOImpl implements IInsertar<MetodoPagoEntity>, IMostrarT
                 System.out.println(resultSet.getInt("ID_METODO_PAGO") + " : " +
                         resultSet.getString("NOMBRE_METODO_PAGO"));
             }
+        } catch (SQLException e) {
+            System.out.println("Error SQL: " + e.getMessage());
+            e.printStackTrace();
         } catch (Exception e) {
+            System.out.println("Error General: " + e.getMessage());
             e.printStackTrace();
         }
 

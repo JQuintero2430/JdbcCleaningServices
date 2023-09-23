@@ -7,6 +7,7 @@ import com.cleaningservices.utilities.Connector;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 public class ProductoDAOImpl implements IInsertar<ProductoEntity>, IMostrarTabla {
@@ -22,8 +23,13 @@ public class ProductoDAOImpl implements IInsertar<ProductoEntity>, IMostrarTabla
             statement.setString(2, producto.getCategoriaProducto());
             statement.setString(3, producto.getMedidaProducto());
             statement.setDouble(4, producto.getPrecioProducto());
+            statement.executeUpdate();
 
+        } catch (SQLException e) {
+            System.out.println("Error SQL: " + e.getMessage());
+            e.printStackTrace();
         } catch (Exception e) {
+            System.out.println("Error General: " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -42,7 +48,11 @@ public class ProductoDAOImpl implements IInsertar<ProductoEntity>, IMostrarTabla
                         resultSet.getString("MEDIDA") + " " +
                         resultSet.getDouble("PRECIO"));
             }
+        } catch (SQLException e) {
+            System.out.println("Error SQL: " + e.getMessage());
+            e.printStackTrace();
         } catch (Exception e) {
+            System.out.println("Error General: " + e.getMessage());
             e.printStackTrace();
         }
     }

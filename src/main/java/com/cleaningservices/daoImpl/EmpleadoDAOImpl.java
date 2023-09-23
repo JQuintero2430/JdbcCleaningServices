@@ -7,6 +7,7 @@ import com.cleaningservices.utilities.Connector;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 public class EmpleadoDAOImpl implements IInsertar<EmpleadoEntity>, IMostrarTabla {
@@ -22,7 +23,12 @@ public class EmpleadoDAOImpl implements IInsertar<EmpleadoEntity>, IMostrarTabla
             statement.setString(3, entidad.getTipoDocumentoEmpleado());
             statement.setLong(4, entidad.getNumeroDocumentoEmpleado());
             statement.setInt(5, entidad.getIdUsuario());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error SQL: " + e.getMessage());
+            e.printStackTrace();
         } catch (Exception e) {
+            System.out.println("Error General: " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -44,7 +50,11 @@ public class EmpleadoDAOImpl implements IInsertar<EmpleadoEntity>, IMostrarTabla
 
             }
 
+        } catch (SQLException e) {
+            System.out.println("Error SQL: " + e.getMessage());
+            e.printStackTrace();
         } catch (Exception e) {
+            System.out.println("Error General: " + e.getMessage());
             e.printStackTrace();
         }
     }

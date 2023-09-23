@@ -1,5 +1,6 @@
 package com.cleaningservices.entity;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class UsuarioEntity {
@@ -9,9 +10,9 @@ public class UsuarioEntity {
     private String apellidoMaternoUsuario;
     private String emailUsuario;
     private long telefonoUsuario;
-    private Date fechaNacimientoUsuario;
+    private LocalDate fechaNacimientoUsuario;
 
-    public UsuarioEntity(String nombreUsuario, String apellidoPaternoUsuario, String apellidoMaternoUsuario, String emailUsuario, long telefonoUsuario, Date fechaNacimientoUsuario) {
+    public UsuarioEntity(String nombreUsuario, String apellidoPaternoUsuario, String apellidoMaternoUsuario, String emailUsuario, long telefonoUsuario, LocalDate fechaNacimientoUsuario) {
         this.nombreUsuario = nombreUsuario;
         this.apellidoPaternoUsuario = apellidoPaternoUsuario;
         this.apellidoMaternoUsuario = apellidoMaternoUsuario;
@@ -20,7 +21,7 @@ public class UsuarioEntity {
         this.fechaNacimientoUsuario = fechaNacimientoUsuario;
     }
 
-    public UsuarioEntity(int idUsuario, String nombreUsuario, String apellidoPaternoUsuario, String apellidoMaternoUsuario, String emailUsuario, long telefonoUsuario, Date fechaNacimientoUsuario) {
+    public UsuarioEntity(int idUsuario, String nombreUsuario, String apellidoPaternoUsuario, String apellidoMaternoUsuario, String emailUsuario, long telefonoUsuario, LocalDate fechaNacimientoUsuario) {
         this.idUsuario = idUsuario;
         this.nombreUsuario = nombreUsuario;
         this.apellidoPaternoUsuario = apellidoPaternoUsuario;
@@ -78,11 +79,11 @@ public class UsuarioEntity {
         this.telefonoUsuario = telefonoUsuario;
     }
 
-    public Date getFechaNacimientoUsuario() {
+    public LocalDate getFechaNacimientoUsuario() {
         return fechaNacimientoUsuario;
     }
 
-    public void setFechaNacimientoUsuario(Date fechaNacimientoUsuario) {
+    public void setFechaNacimientoUsuario(LocalDate fechaNacimientoUsuario) {
         this.fechaNacimientoUsuario = fechaNacimientoUsuario;
     }
 }
