@@ -3,18 +3,18 @@ package com.cleaningservices.entity;
 public class ProductoEntity {
     private int idProducto;
     private String nombreProducto;
-    private String categoriaProducto;
+    private int categoriaProducto;
     private String medidaProducto;
     private double precioProducto;
 
-    public ProductoEntity(String nombreProducto, String categoriaProducto, String medidaProducto, double precioProducto) {
+    public ProductoEntity(String nombreProducto, int categoriaProducto, String medidaProducto, double precioProducto) {
         this.nombreProducto = nombreProducto;
         this.categoriaProducto = categoriaProducto;
         this.medidaProducto = medidaProducto;
         this.precioProducto = precioProducto;
     }
 
-    public ProductoEntity(int idProducto, String nombreProducto, String categoriaProducto, String medidaProducto, double precioProducto) {
+    public ProductoEntity(int idProducto, String nombreProducto, int categoriaProducto, String medidaProducto, double precioProducto) {
         this.idProducto = idProducto;
         this.nombreProducto = nombreProducto;
         this.categoriaProducto = categoriaProducto;
@@ -38,11 +38,11 @@ public class ProductoEntity {
         this.nombreProducto = nombreProducto;
     }
 
-    public String getCategoriaProducto() {
+    public int getCategoriaProducto() {
         return categoriaProducto;
     }
 
-    public void setCategoriaProducto(String categoriaProducto) {
+    public void setCategoriaProducto(int categoriaProducto) {
         this.categoriaProducto = categoriaProducto;
     }
 

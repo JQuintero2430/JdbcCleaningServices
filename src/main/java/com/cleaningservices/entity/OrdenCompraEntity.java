@@ -1,5 +1,6 @@
 package com.cleaningservices.entity;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class OrdenCompraEntity {
@@ -8,11 +9,11 @@ public class OrdenCompraEntity {
     private int vendedorIdOrdenCompra;
     private int productoIdOrdenCompra;
     private int cantidadOrdenCompra;
-    private Date fechaOrdenCompra;
+    private LocalDate fechaOrdenCompra;
     private int metodoPagoIdOrdenCompra;
     private double precioOrdenCompra;
 
-    public OrdenCompraEntity(int compradorIdOrdenCompra, int vendedorIdOrdenCompra, int productoIdOrdenCompra, int cantidadOrdenCompra, Date fechaOrdenCompra, int metodoPagoIdOrdenCompra, double precioOrdenCompra) {
+    public OrdenCompraEntity(int compradorIdOrdenCompra, int vendedorIdOrdenCompra, int productoIdOrdenCompra, int cantidadOrdenCompra, LocalDate fechaOrdenCompra, int metodoPagoIdOrdenCompra, double precioOrdenCompra) {
         this.compradorIdOrdenCompra = compradorIdOrdenCompra;
         this.vendedorIdOrdenCompra = vendedorIdOrdenCompra;
         this.productoIdOrdenCompra = productoIdOrdenCompra;
@@ -22,7 +23,8 @@ public class OrdenCompraEntity {
         this.precioOrdenCompra = precioOrdenCompra;
     }
 
-    public OrdenCompraEntity(int idOrdenCompra, int compradorIdOrdenCompra, int vendedorIdOrdenCompra, int productoIdOrdenCompra, int cantidadOrdenCompra, Date fechaOrdenCompra, int metodoPagoIdOrdenCompra, double precioOrdenCompra) {
+    public OrdenCompraEntity(int idOrdenCompra, int compradorIdOrdenCompra, int vendedorIdOrdenCompra, int productoIdOrdenCompra,
+                             int cantidadOrdenCompra, LocalDate fechaOrdenCompra, int metodoPagoIdOrdenCompra, double precioOrdenCompra) {
         this.idOrdenCompra = idOrdenCompra;
         this.compradorIdOrdenCompra = compradorIdOrdenCompra;
         this.vendedorIdOrdenCompra = vendedorIdOrdenCompra;
@@ -73,11 +75,11 @@ public class OrdenCompraEntity {
         this.cantidadOrdenCompra = cantidadOrdenCompra;
     }
 
-    public java.sql.Date getFechaOrdenCompra() {
-        return (java.sql.Date) fechaOrdenCompra;
+    public LocalDate getFechaOrdenCompra() {
+        return fechaOrdenCompra;
     }
 
-    public void setFechaOrdenCompra(Date fechaOrdenCompra) {
+    public void setFechaOrdenCompra(LocalDate fechaOrdenCompra) {
         this.fechaOrdenCompra = fechaOrdenCompra;
     }
 

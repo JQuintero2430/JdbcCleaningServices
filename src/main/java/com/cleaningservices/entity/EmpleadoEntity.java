@@ -9,27 +9,21 @@ public class EmpleadoEntity {
     private long numeroDocumentoEmpleado;
     private int idUsuario;
 
-    public EmpleadoEntity( String posicionEmpleado, String rolEmpleado, String tipoDocumentoEmpleado, long numeroDocumentoEmpleado,int idUsuario) {
+    public EmpleadoEntity(String posicionEmpleado, String rolEmpleado, String tipoDocumentoEmpleado, long numeroDocumentoEmpleado, int idUsuario1) {
         this.posicionEmpleado = posicionEmpleado;
         this.rolEmpleado = rolEmpleado;
         this.tipoDocumentoEmpleado = tipoDocumentoEmpleado;
         this.numeroDocumentoEmpleado = numeroDocumentoEmpleado;
+        this.idUsuario = idUsuario1;
     }
 
-    public EmpleadoEntity(int idEmpleado, String posicionEmpleado, String rolEmpleado, String tipoDocumentoEmpleado, long numeroDocumentoEmpleado, int idUsuario) {
+    public EmpleadoEntity(int idEmpleado, String posicionEmpleado, String rolEmpleado, String tipoDocumentoEmpleado, long numeroDocumentoEmpleado, int idUsuario1) {
         this.idEmpleado = idEmpleado;
         this.posicionEmpleado = posicionEmpleado;
         this.rolEmpleado = rolEmpleado;
         this.tipoDocumentoEmpleado = tipoDocumentoEmpleado;
         this.numeroDocumentoEmpleado = numeroDocumentoEmpleado;
-    }
-
-    public int getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+        this.idUsuario = idUsuario1;
     }
 
     public int getIdEmpleado() {
@@ -70,5 +64,13 @@ public class EmpleadoEntity {
 
     public void setNumeroDocumentoEmpleado(long numeroDocumentoEmpleado) {
         this.numeroDocumentoEmpleado = numeroDocumentoEmpleado;
+    }
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
 }

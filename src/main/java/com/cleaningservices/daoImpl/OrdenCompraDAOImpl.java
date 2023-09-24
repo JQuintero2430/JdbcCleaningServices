@@ -5,10 +5,7 @@ import com.cleaningservices.dao.IMostrarTabla;
 import com.cleaningservices.entity.OrdenCompraEntity;
 import com.cleaningservices.utilities.Connector;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class OrdenCompraDAOImpl implements IInsertar<OrdenCompraEntity>, IMostrarTabla {
     Connector connector = new Connector();
@@ -23,7 +20,7 @@ public class OrdenCompraDAOImpl implements IInsertar<OrdenCompraEntity>, IMostra
             statement.setInt(2, entidad.getVendedorIdOrdenCompra());
             statement.setInt(3, entidad.getProductoIdOrdenCompra());
             statement.setInt(4, entidad.getCantidadOrdenCompra());
-            statement.setDate(5, entidad.getFechaOrdenCompra());
+            statement.setDate(5, Date.valueOf(entidad.getFechaOrdenCompra()));
             statement.setInt(6, entidad.getMetodoPagoIdOrdenCompra());
             statement.setDouble(7, entidad.getPrecioOrdenCompra());
             statement.executeUpdate();

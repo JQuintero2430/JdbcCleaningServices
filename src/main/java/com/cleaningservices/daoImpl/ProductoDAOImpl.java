@@ -20,7 +20,7 @@ public class ProductoDAOImpl implements IInsertar<ProductoEntity>, IMostrarTabla
 
         try (PreparedStatement statement = connector.getConnection().prepareStatement(queryAddProducto)) {
             statement.setString(1, producto.getNombreProducto());
-            statement.setString(2, producto.getCategoriaProducto());
+            statement.setInt(2, producto.getCategoriaProducto());
             statement.setString(3, producto.getMedidaProducto());
             statement.setDouble(4, producto.getPrecioProducto());
             statement.executeUpdate();
@@ -36,7 +36,7 @@ public class ProductoDAOImpl implements IInsertar<ProductoEntity>, IMostrarTabla
 
     @Override
     public void mostrarTabla() {
-        String queryMostrarData = "SELECT * FROM usuario limit 20";
+        String queryMostrarData = "SELECT * FROM producto limit 20";
 
         try (Statement statement = connector.getConnection().createStatement();
              ResultSet resultSet = statement.executeQuery(queryMostrarData)) {
@@ -44,7 +44,7 @@ public class ProductoDAOImpl implements IInsertar<ProductoEntity>, IMostrarTabla
             while (resultSet.next()) {
                 System.out.println(resultSet.getInt("ID_PRODUCTO") + " : " +
                         resultSet.getString("NOMBRE") + " " +
-                        resultSet.getString("CATEGORIA_ID") + " " +
+                        resultSet.getInt("CATEGORIA_ID") + " " +
                         resultSet.getString("MEDIDA") + " " +
                         resultSet.getDouble("PRECIO"));
             }
