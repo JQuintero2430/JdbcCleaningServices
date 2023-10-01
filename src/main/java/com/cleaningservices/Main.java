@@ -7,6 +7,7 @@ import java.time.LocalDate;
 
 public class Main {
     public static void main(String[] args) {
+
         UsuarioDAOImpl usuarioDao = new UsuarioDAOImpl();
         EmpleadoDAOImpl empleadoDao = new EmpleadoDAOImpl();
         CategoriaProductoDAOImpl categoriaProductoDao = new CategoriaProductoDAOImpl();
