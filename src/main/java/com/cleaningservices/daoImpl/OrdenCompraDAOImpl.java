@@ -1,5 +1,7 @@
 package com.cleaningservices.daoImpl;
 
+import com.cleaningservices.dao.IActualizar;
+import com.cleaningservices.dao.IBorrar;
 import com.cleaningservices.dao.IInsertar;
 import com.cleaningservices.dao.IMostrarTabla;
 import com.cleaningservices.entity.OrdenCompraEntity;
@@ -7,7 +9,7 @@ import com.cleaningservices.utilities.Connector;
 
 import java.sql.*;
 
-public class OrdenCompraDAOImpl implements IInsertar<OrdenCompraEntity>, IMostrarTabla {
+public class OrdenCompraDAOImpl implements IInsertar<OrdenCompraEntity>, IMostrarTabla, IActualizar, IBorrar {
     Connector connector = new Connector();
 
     @Override
@@ -57,5 +59,38 @@ public class OrdenCompraDAOImpl implements IInsertar<OrdenCompraEntity>, IMostra
             System.out.println("Error General: " + e.getMessage());
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void actualizar(Integer id, String column, String value) {
+        String queryActualizarOrdenCompra = "UPDATE orden_compra SET " + column + " = ? WHERE ID_ORDEN = ?";
+
+        try (PreparedStatement statement = connector.getConnection().prepareStatement(queryActualizarOrdenCompra)) {
+            statement.setString(1, value);
+            statement.setInt(2, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error SQL: " + e.getMessage());
+            e.printStackTrace();
+        } catch (Exception e) {
+            System.out.println("Error General: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void borrar(int id) {
+        String queryBorrarOrdenCompra = "DELETE FROM orden_compra WHERE ID_ORDEN = ?";
+
+        try (PreparedStatement statement = connector.getConnection().prepareStatement(queryBorrarOrdenCompra)) {
+            statement.setInt(1, id);
+        } catch (SQLException e) {
+            System.out.println("Error SQL: " + e.getMessage());
+            e.printStackTrace();
+        } catch (Exception e) {
+            System.out.println("Error General: " + e.getMessage());
+            e.printStackTrace();
+        }
+
     }
 }

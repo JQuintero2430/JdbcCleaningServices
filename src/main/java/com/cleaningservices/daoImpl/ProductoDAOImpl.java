@@ -1,5 +1,7 @@
 package com.cleaningservices.daoImpl;
 
+import com.cleaningservices.dao.IActualizar;
+import com.cleaningservices.dao.IBorrar;
 import com.cleaningservices.dao.IInsertar;
 import com.cleaningservices.dao.IMostrarTabla;
 import com.cleaningservices.entity.ProductoEntity;
@@ -10,7 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class ProductoDAOImpl implements IInsertar<ProductoEntity>, IMostrarTabla {
+public class ProductoDAOImpl implements IInsertar<ProductoEntity>, IMostrarTabla, IActualizar, IBorrar {
     Connector connector = new Connector();
 
     @Override
@@ -55,5 +57,37 @@ public class ProductoDAOImpl implements IInsertar<ProductoEntity>, IMostrarTabla
             System.out.println("Error General: " + e.getMessage());
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void actualizar(Integer id, String column, String value) {
+        String queryActualizarProducto = "UPDATE producto SET " + column + " = ? WHERE ID_PRODUCTO = ?";
+
+        try (PreparedStatement statement = connector.getConnection().prepareStatement(queryActualizarProducto)) {
+            statement.setString(1, value);
+            statement.setInt(2, id);
+        } catch (SQLException e) {
+            System.out.println("Error SQL: " + e.getMessage());
+            e.printStackTrace();
+        } catch (Exception e) {
+            System.out.println("Error General: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void borrar(int id) {
+        String queryBorrarProducto = "DELETE FROM producto WHERE ID_PRODUCTO = ?";
+
+        try (PreparedStatement statement = connector.getConnection().prepareStatement(queryBorrarProducto)) {
+            statement.setInt(1, id);
+        } catch (SQLException e) {
+            System.out.println("Error SQL: " + e.getMessage());
+            e.printStackTrace();
+        } catch (Exception e) {
+            System.out.println("Error General: " + e.getMessage());
+            e.printStackTrace();
+        }
+
     }
 }
