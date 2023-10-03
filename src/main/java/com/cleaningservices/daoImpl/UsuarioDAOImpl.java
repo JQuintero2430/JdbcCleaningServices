@@ -1,5 +1,7 @@
 package com.cleaningservices.daoImpl;
 
+import com.cleaningservices.dao.IActualizar;
+import com.cleaningservices.dao.IBorrar;
 import com.cleaningservices.dao.IInsertar;
 import com.cleaningservices.dao.IMostrarTabla;
 import com.cleaningservices.entity.UsuarioEntity;
@@ -7,7 +9,7 @@ import com.cleaningservices.utilities.Connector;
 
 import java.sql.*;
 
-public class UsuarioDAOImpl implements IInsertar<UsuarioEntity>, IMostrarTabla {
+public class UsuarioDAOImpl implements IInsertar<UsuarioEntity>, IMostrarTabla, IActualizar, IBorrar {
     Connector connector = new Connector();
 
     @Override
@@ -60,4 +62,35 @@ public class UsuarioDAOImpl implements IInsertar<UsuarioEntity>, IMostrarTabla {
 
     }
 
+    @Override
+    public void actualizar(Integer id, String column, String value) {
+        String queryActualizar = "UPDATE usuario SET " + column + " = ? WHERE ID_USUARIO = ?";
+
+        try (PreparedStatement statement = connector.getConnection().prepareStatement(queryActualizar)) {
+            statement.setString(1, value);
+            statement.setInt(2, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error SQL: " + e.getMessage());
+            e.printStackTrace();
+        } catch (Exception e) {
+            System.out.println("Error General: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void borrar(int id) {
+        String queryBorrarUsuario = "DELETE FROM usuario WHERE ID_USUARIO = ?";
+
+        try (PreparedStatement statement = connector.getConnection().prepareStatement(queryBorrarUsuario)) {
+            statement.setInt(1, id);
+        } catch (SQLException e) {
+            System.out.println("Error SQL: " + e.getMessage());
+            e.printStackTrace();
+        } catch (Exception e) {
+            System.out.println("Error General: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
 }

@@ -1,5 +1,7 @@
 package com.cleaningservices.daoImpl;
 
+import com.cleaningservices.dao.IActualizar;
+import com.cleaningservices.dao.IBorrar;
 import com.cleaningservices.dao.IInsertar;
 import com.cleaningservices.dao.IMostrarTabla;
 import com.cleaningservices.entity.CategoriaProductoEntity;
@@ -10,7 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class CategoriaProductoDAOImpl implements IInsertar<CategoriaProductoEntity>, IMostrarTabla {
+public class CategoriaProductoDAOImpl implements IInsertar<CategoriaProductoEntity>, IMostrarTabla, IActualizar, IBorrar {
     Connector connector = new Connector();
 
     @Override
@@ -33,10 +35,10 @@ public class CategoriaProductoDAOImpl implements IInsertar<CategoriaProductoEnti
 
     @Override
     public void mostrarTabla() {
-        String queryMostrarData = "SELECT * FROM categoria_producto limit 20";
+        String queryMostrarDataCategoriaProducto = "SELECT * FROM categoria_producto limit 20";
 
         try (Statement statement = connector.getConnection().createStatement();
-             ResultSet resultSet = statement.executeQuery(queryMostrarData)) {
+             ResultSet resultSet = statement.executeQuery(queryMostrarDataCategoriaProducto)) {
             System.out.println("ID :  DATOS DE LA CATEGORIA DE PRODUCTO");
             while (resultSet.next()) {
                 System.out.println(resultSet.getInt("ID_CATEGORIA_PRODUCTO") + " : " +
@@ -44,6 +46,38 @@ public class CategoriaProductoDAOImpl implements IInsertar<CategoriaProductoEnti
                         resultSet.getString("TIPO_CATEGORIA_PRODUCTO"));
             }
 
+        } catch (SQLException e) {
+            System.out.println("Error SQL: " + e.getMessage());
+            e.printStackTrace();
+        } catch (Exception e) {
+            System.out.println("Error General: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
+    public void actualizar(Integer id, String column, String value) {
+        String queryActualizarCategoriaProducto = "UPDATE categoria_producto SET " + column + " = ? WHERE ID_CATEGORIA_PRODUCTO = ?";
+        try (PreparedStatement statement = connector.getConnection().prepareStatement(queryActualizarCategoriaProducto)) {
+            statement.setString(2, value);
+            statement.setInt(3, id);
+        } catch (SQLException e) {
+            System.out.println("Error SQL: " + e.getMessage());
+            e.printStackTrace();
+        } catch (Exception e) {
+            System.out.println("Error General: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
+    public void borrar(int id) {
+        String queryBorrarCategoriaProducto = "DELETE FROM categoria_producto WHERE ID_CATEGORIA_PRODUCTO = ?";
+
+        try (PreparedStatement statement = connector.getConnection().prepareStatement(queryBorrarCategoriaProducto)) {
+            statement.setInt(1, id);
         } catch (SQLException e) {
             System.out.println("Error SQL: " + e.getMessage());
             e.printStackTrace();
