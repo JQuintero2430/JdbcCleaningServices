@@ -1,9 +1,7 @@
 package com.cleaningservices.entity;
 
-import com.cleaningservices.crudinterfaces.IActualizar;
-import com.cleaningservices.crudinterfaces.IBorrar;
-import com.cleaningservices.crudinterfaces.IInsertar;
-import com.cleaningservices.crudinterfaces.IMostrarTabla;
+
+import com.cleaningservices.abstracts.AbstractEntity;
 import com.cleaningservices.utilities.Connector;
 
 import java.sql.PreparedStatement;
@@ -11,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class MetodoPagoEntity implements IInsertar<MetodoPagoEntity>, IMostrarTabla, IActualizar, IBorrar {
+public class MetodoPagoEntity extends AbstractEntity {
     private int idMetodoPago;
     private String nombreMetodoPago;
     private Connector connector = new Connector();
@@ -26,19 +24,26 @@ public class MetodoPagoEntity implements IInsertar<MetodoPagoEntity>, IMostrarTa
     }
 
     @Override
-    public void insertar(MetodoPagoEntity entidad) {
-        String queryAddMetodoPago = "INSERT INTO metodo_pago (NOMBRE_METODO_PAGO) " + "VALUES (?)";
+    public void insertar(Object entidad) {
+        if (entidad instanceof MetodoPagoEntity){
+            MetodoPagoEntity metodoPago = (MetodoPagoEntity) entidad;
 
-        try (PreparedStatement statement = connector.getConnection().prepareStatement(queryAddMetodoPago)) {
-            statement.setString(1, entidad.getNombreMetodoPago());
-            statement.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println("Error SQL: " + e.getMessage());
-            e.printStackTrace();
-        } catch (Exception e) {
-            System.out.println("Error General: " + e.getMessage());
-            e.printStackTrace();
+            String queryAddMetodoPago = "INSERT INTO metodo_pago (NOMBRE_METODO_PAGO) " + "VALUES (?)";
+
+            try (PreparedStatement statement = connector.getConnection().prepareStatement(queryAddMetodoPago)) {
+                statement.setString(1, metodoPago.getNombreMetodoPago());
+                statement.executeUpdate();
+            } catch (SQLException e) {
+                System.out.println("Error SQL: " + e.getMessage());
+                e.printStackTrace();
+            } catch (Exception e) {
+                System.out.println("Error General: " + e.getMessage());
+                e.printStackTrace();
+            }
+        }else {
+            System.out.println("El objeto no es una instancia de MetodoPagoEntity");
         }
+
     }
     @Override
     public void mostrarTabla() {

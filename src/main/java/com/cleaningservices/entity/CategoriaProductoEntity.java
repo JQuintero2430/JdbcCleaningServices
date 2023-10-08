@@ -1,9 +1,6 @@
 package com.cleaningservices.entity;
 
-import com.cleaningservices.crudinterfaces.IActualizar;
-import com.cleaningservices.crudinterfaces.IBorrar;
-import com.cleaningservices.crudinterfaces.IInsertar;
-import com.cleaningservices.crudinterfaces.IMostrarTabla;
+import com.cleaningservices.abstracts.AbstractEntity;
 import com.cleaningservices.utilities.Connector;
 
 import java.sql.PreparedStatement;
@@ -11,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class CategoriaProductoEntity implements IInsertar<CategoriaProductoEntity>, IMostrarTabla, IActualizar, IBorrar {
+public class CategoriaProductoEntity extends AbstractEntity {
     private int idCategoriaProducto;
     private String nombreCategoriaProducto;
     private String tipoCategoriaProducto;
@@ -29,21 +26,28 @@ public class CategoriaProductoEntity implements IInsertar<CategoriaProductoEntit
     }
 
     @Override
-    public void insertar(CategoriaProductoEntity entidad) {
-        String queryAddCategoriaProducto = "INSERT INTO categoria_producto (NOMBRE_CATEGORIA_PRODUCTO, TIPO_CATEGORIA_PRODUCTO) " +
-                "VALUES (?, ?)";
+    public void insertar(Object entidad) {
+        if (entidad instanceof CategoriaProductoEntity) {
+            CategoriaProductoEntity categoriaProducto = (CategoriaProductoEntity) entidad;
 
-        try (PreparedStatement statement = connector.getConnection().prepareStatement(queryAddCategoriaProducto)) {
-            statement.setString(1, entidad.getNombreCategoriaProducto());
-            statement.setString(2, entidad.getTipoCategoriaProducto());
-            statement.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println("Error SQL: " + e.getMessage());
-            e.printStackTrace();
-        } catch (Exception e) {
-            System.out.println("Error General: " + e.getMessage());
-            e.printStackTrace();
+            String queryAddCategoriaProducto = "INSERT INTO categoria_producto (NOMBRE_CATEGORIA_PRODUCTO, TIPO_CATEGORIA_PRODUCTO) " +
+                    "VALUES (?, ?)";
+
+            try (PreparedStatement statement = connector.getConnection().prepareStatement(queryAddCategoriaProducto)) {
+                statement.setString(1, categoriaProducto.getNombreCategoriaProducto());
+                statement.setString(2, categoriaProducto.getTipoCategoriaProducto());
+                statement.executeUpdate();
+            } catch (SQLException e) {
+                System.out.println("Error SQL: " + e.getMessage());
+                e.printStackTrace();
+            } catch (Exception e) {
+                System.out.println("Error General: " + e.getMessage());
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("El objeto no es una instancia de CategoriaProductoEntity");
         }
+
     }
 
     @Override

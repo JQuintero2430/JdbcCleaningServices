@@ -1,15 +1,12 @@
 package com.cleaningservices.entity;
 
-import com.cleaningservices.crudinterfaces.IActualizar;
-import com.cleaningservices.crudinterfaces.IBorrar;
-import com.cleaningservices.crudinterfaces.IInsertar;
-import com.cleaningservices.crudinterfaces.IMostrarTabla;
+import com.cleaningservices.abstracts.AbstractEntity;
 import com.cleaningservices.utilities.Connector;
 
 import java.sql.*;
 import java.time.LocalDate;
 
-public class UsuarioEntity implements IInsertar<UsuarioEntity>, IMostrarTabla, IActualizar, IBorrar {
+public class UsuarioEntity extends AbstractEntity {
     private int idUsuario;
     private String nombreUsuario;
     private String apellidoPaternoUsuario;
@@ -39,25 +36,31 @@ public class UsuarioEntity implements IInsertar<UsuarioEntity>, IMostrarTabla, I
     }
 
     @Override
-    public void insertar(UsuarioEntity usuario) {
-        String queryAddUsuario = "INSERT INTO usuario (NOMBRE, APELLIDO_PATERNO, APELLIDO_MATERNO, " +
-                "EMAIL, NUMERO_TELEFONO, FECHA_NACIMIENTO) VALUES (?, ?, ?, ?, ?, ?)";
+    public void insertar(Object entidad) {
+        if (entidad instanceof UsuarioEntity) {
+            UsuarioEntity usuario = (UsuarioEntity) entidad;
 
-        try (PreparedStatement statement = connector.getConnection().prepareStatement(queryAddUsuario)) {
-            statement.setString(1, usuario.getNombreUsuario());
-            statement.setString(2, usuario.getApellidoPaternoUsuario());
-            statement.setString(3, usuario.getApellidoMaternoUsuario());
-            statement.setString(4, usuario.getEmailUsuario());
-            statement.setLong(5, usuario.getTelefonoUsuario());
-            statement.setDate(6, Date.valueOf(usuario.getFechaNacimientoUsuario()));
-            statement.executeUpdate();
+            String queryAddUsuario = "INSERT INTO usuario (NOMBRE, APELLIDO_PATERNO, APELLIDO_MATERNO, " +
+                    "EMAIL, NUMERO_TELEFONO, FECHA_NACIMIENTO) VALUES (?, ?, ?, ?, ?, ?)";
 
-        } catch (SQLException e) {
-            System.out.println("Error SQL: " + e.getMessage());
-            e.printStackTrace();
-        } catch (Exception e) {
-            System.out.println("Error General: " + e.getMessage());
-            e.printStackTrace();
+            try (PreparedStatement statement = connector.getConnection().prepareStatement(queryAddUsuario)) {
+                statement.setString(1, usuario.getNombreUsuario());
+                statement.setString(2, usuario.getApellidoPaternoUsuario());
+                statement.setString(3, usuario.getApellidoMaternoUsuario());
+                statement.setString(4, usuario.getEmailUsuario());
+                statement.setLong(5, usuario.getTelefonoUsuario());
+                statement.setDate(6, Date.valueOf(usuario.getFechaNacimientoUsuario()));
+                statement.executeUpdate();
+
+            } catch (SQLException e) {
+                System.out.println("Error SQL: " + e.getMessage());
+                e.printStackTrace();
+            } catch (Exception e) {
+                System.out.println("Error General: " + e.getMessage());
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("El objeto no es una instancia de UsuarioEntity");
         }
     }
     @Override

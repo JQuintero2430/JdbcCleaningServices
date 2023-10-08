@@ -1,15 +1,14 @@
 package com.cleaningservices.entity;
 
-import com.cleaningservices.crudinterfaces.IActualizar;
-import com.cleaningservices.crudinterfaces.IBorrar;
-import com.cleaningservices.crudinterfaces.IInsertar;
-import com.cleaningservices.crudinterfaces.IMostrarTabla;
+
+
+import com.cleaningservices.abstracts.AbstractEntity;
 import com.cleaningservices.utilities.Connector;
 
 import java.sql.*;
 import java.time.LocalDate;
 
-public class OrdenCompraEntity implements IInsertar<OrdenCompraEntity>, IMostrarTabla, IActualizar, IBorrar {
+public class OrdenCompraEntity extends AbstractEntity {
     private int idOrdenCompra;
     private int compradorIdOrdenCompra;
     private int vendedorIdOrdenCompra;
@@ -42,26 +41,32 @@ public class OrdenCompraEntity implements IInsertar<OrdenCompraEntity>, IMostrar
     }
 
     @Override
-    public void insertar(OrdenCompraEntity entidad) {
-        String queryAddOrdenCompra = "INSERT INTO orden_compra (COMPRADOR_ID, VENDEDOR_ID, PRODUCTO_ID, CANTIDAD, " +
-                "FECHA_ORDEN, METODO_PAGO_ID, PRECIO) " + "VALUES (?, ?, ?, ?, ?, ?, ?)";
+    public void insertar(Object entidad) {
+        if (entidad instanceof OrdenCompraEntity) {
+            OrdenCompraEntity ordenCompra = (OrdenCompraEntity) entidad;
+            String queryAddOrdenCompra = "INSERT INTO orden_compra (COMPRADOR_ID, VENDEDOR_ID, PRODUCTO_ID, CANTIDAD, " +
+                    "FECHA_ORDEN, METODO_PAGO_ID, PRECIO) " + "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-        try (PreparedStatement statement = connector.getConnection().prepareStatement(queryAddOrdenCompra)) {
-            statement.setInt(1, entidad.getCompradorIdOrdenCompra());
-            statement.setInt(2, entidad.getVendedorIdOrdenCompra());
-            statement.setInt(3, entidad.getProductoIdOrdenCompra());
-            statement.setInt(4, entidad.getCantidadOrdenCompra());
-            statement.setDate(5, Date.valueOf(entidad.getFechaOrdenCompra()));
-            statement.setInt(6, entidad.getMetodoPagoIdOrdenCompra());
-            statement.setDouble(7, entidad.getPrecioOrdenCompra());
-            statement.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println("Error SQL: " + e.getMessage());
-            e.printStackTrace();
-        } catch (Exception e) {
-            System.out.println("Error General: " + e.getMessage());
-            e.printStackTrace();
+            try (PreparedStatement statement = connector.getConnection().prepareStatement(queryAddOrdenCompra)) {
+                statement.setInt(1, ordenCompra.getCompradorIdOrdenCompra());
+                statement.setInt(2, ordenCompra.getVendedorIdOrdenCompra());
+                statement.setInt(3, ordenCompra.getProductoIdOrdenCompra());
+                statement.setInt(4, ordenCompra.getCantidadOrdenCompra());
+                statement.setDate(5, Date.valueOf(ordenCompra.getFechaOrdenCompra()));
+                statement.setInt(6, ordenCompra.getMetodoPagoIdOrdenCompra());
+                statement.setDouble(7, ordenCompra.getPrecioOrdenCompra());
+                statement.executeUpdate();
+            } catch (SQLException e) {
+                System.out.println("Error SQL: " + e.getMessage());
+                e.printStackTrace();
+            } catch (Exception e) {
+                System.out.println("Error General: " + e.getMessage());
+                e.printStackTrace();
+            }
+        }else {
+            System.out.println("No se puede insertar el objeto");
         }
+
     }
 
     @Override

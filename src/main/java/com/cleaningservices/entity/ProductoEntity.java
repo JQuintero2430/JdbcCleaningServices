@@ -1,9 +1,7 @@
 package com.cleaningservices.entity;
 
-import com.cleaningservices.crudinterfaces.IActualizar;
-import com.cleaningservices.crudinterfaces.IBorrar;
-import com.cleaningservices.crudinterfaces.IInsertar;
-import com.cleaningservices.crudinterfaces.IMostrarTabla;
+
+import com.cleaningservices.abstracts.AbstractEntity;
 import com.cleaningservices.utilities.Connector;
 
 import java.sql.PreparedStatement;
@@ -11,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class ProductoEntity implements IInsertar<ProductoEntity>, IMostrarTabla, IActualizar, IBorrar {
+public class ProductoEntity extends AbstractEntity {
     private int idProducto;
     private String nombreProducto;
     private int categoriaProducto;
@@ -35,23 +33,28 @@ public class ProductoEntity implements IInsertar<ProductoEntity>, IMostrarTabla,
     }
 
     @Override
-    public void insertar(ProductoEntity producto) {
-        String queryAddProducto = "INSERT INTO producto (NOMBRE, CATEGORIA_ID, MEDIDA, PRECIO) " +
-                "VALUES (?, ?, ?, ?)";
+    public void insertar(Object entidad) {
+        if (entidad instanceof ProductoEntity) {
+            ProductoEntity producto = (ProductoEntity) entidad;
+            String queryAddProducto = "INSERT INTO producto (NOMBRE, CATEGORIA_ID, MEDIDA, PRECIO) " +
+                    "VALUES (?, ?, ?, ?)";
 
-        try (PreparedStatement statement = connector.getConnection().prepareStatement(queryAddProducto)) {
-            statement.setString(1, producto.getNombreProducto());
-            statement.setInt(2, producto.getCategoriaProducto());
-            statement.setString(3, producto.getMedidaProducto());
-            statement.setDouble(4, producto.getPrecioProducto());
-            statement.executeUpdate();
+            try (PreparedStatement statement = connector.getConnection().prepareStatement(queryAddProducto)) {
+                statement.setString(1, producto.getNombreProducto());
+                statement.setInt(2, producto.getCategoriaProducto());
+                statement.setString(3, producto.getMedidaProducto());
+                statement.setDouble(4, producto.getPrecioProducto());
+                statement.executeUpdate();
 
-        } catch (SQLException e) {
-            System.out.println("Error SQL: " + e.getMessage());
-            e.printStackTrace();
-        } catch (Exception e) {
-            System.out.println("Error General: " + e.getMessage());
-            e.printStackTrace();
+            } catch (SQLException e) {
+                System.out.println("Error SQL: " + e.getMessage());
+                e.printStackTrace();
+            } catch (Exception e) {
+                System.out.println("Error General: " + e.getMessage());
+                e.printStackTrace();
+            }
+        }else {
+            System.out.println("No se puede insertar el objeto");
         }
     }
 

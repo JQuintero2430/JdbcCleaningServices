@@ -1,9 +1,6 @@
 package com.cleaningservices.entity;
 
-import com.cleaningservices.crudinterfaces.IActualizar;
-import com.cleaningservices.crudinterfaces.IBorrar;
-import com.cleaningservices.crudinterfaces.IInsertar;
-import com.cleaningservices.crudinterfaces.IMostrarTabla;
+import com.cleaningservices.abstracts.AbstractEntity;
 import com.cleaningservices.utilities.Connector;
 
 import java.sql.PreparedStatement;
@@ -11,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class EmpleadoEntity implements IInsertar<EmpleadoEntity>, IMostrarTabla, IActualizar, IBorrar {
+public class EmpleadoEntity extends AbstractEntity {
 
     private int idEmpleado;
     private String posicionEmpleado;
@@ -39,23 +36,30 @@ public class EmpleadoEntity implements IInsertar<EmpleadoEntity>, IMostrarTabla,
     }
 
     @Override
-    public void insertar(EmpleadoEntity entidad) {
-        String queryAddEmpleado = "INSERT INTO empleado (POSICION, ROL, TIPO_DOCUMENTO, NUMERO_DOCUMENTO, ID_USUARIO) " +
-                "VALUES (?, ?, ?, ?, ?)";
-        try (PreparedStatement statement = connector.getConnection().prepareStatement(queryAddEmpleado)) {
-            statement.setString(1, entidad.getPosicionEmpleado());
-            statement.setString(2, entidad.getRolEmpleado());
-            statement.setString(3, entidad.getTipoDocumentoEmpleado());
-            statement.setLong(4, entidad.getNumeroDocumentoEmpleado());
-            statement.setInt(5, entidad.getIdUsuario());
-            statement.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println("Error SQL: " + e.getMessage());
-            e.printStackTrace();
-        } catch (Exception e) {
-            System.out.println("Error General: " + e.getMessage());
-            e.printStackTrace();
+    public void insertar(Object entidad) {
+        if ( entidad instanceof EmpleadoEntity) {
+            EmpleadoEntity empleado = (EmpleadoEntity) entidad;
+
+            String queryAddEmpleado = "INSERT INTO empleado (POSICION, ROL, TIPO_DOCUMENTO, NUMERO_DOCUMENTO, ID_USUARIO) " +
+                    "VALUES (?, ?, ?, ?, ?)";
+            try (PreparedStatement statement = connector.getConnection().prepareStatement(queryAddEmpleado)) {
+                statement.setString(1, empleado.getPosicionEmpleado());
+                statement.setString(2, empleado.getRolEmpleado());
+                statement.setString(3, empleado.getTipoDocumentoEmpleado());
+                statement.setLong(4, empleado.getNumeroDocumentoEmpleado());
+                statement.setInt(5, empleado.getIdUsuario());
+                statement.executeUpdate();
+            } catch (SQLException e) {
+                System.out.println("Error SQL: " + e.getMessage());
+                e.printStackTrace();
+            } catch (Exception e) {
+                System.out.println("Error General: " + e.getMessage());
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("El objeto no es una instancia de EmpleadoEntity");
         }
+
     }
 
     @Override
