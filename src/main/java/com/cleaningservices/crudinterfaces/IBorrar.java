@@ -1,4 +1,4 @@
-package com.cleaningservices.dao;
+package com.cleaningservices.crudinterfaces;
 
 import com.cleaningservices.utilities.Connector;
 

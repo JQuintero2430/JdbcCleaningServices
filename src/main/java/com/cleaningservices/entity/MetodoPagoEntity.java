@@ -1,9 +1,9 @@
 package com.cleaningservices.entity;
 
-import com.cleaningservices.dao.IActualizar;
-import com.cleaningservices.dao.IBorrar;
-import com.cleaningservices.dao.IInsertar;
-import com.cleaningservices.dao.IMostrarTabla;
+import com.cleaningservices.crudinterfaces.IActualizar;
+import com.cleaningservices.crudinterfaces.IBorrar;
+import com.cleaningservices.crudinterfaces.IInsertar;
+import com.cleaningservices.crudinterfaces.IMostrarTabla;
 import com.cleaningservices.utilities.Connector;
 
 import java.sql.PreparedStatement;
