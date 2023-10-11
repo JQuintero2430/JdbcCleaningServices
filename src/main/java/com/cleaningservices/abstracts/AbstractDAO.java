@@ -6,7 +6,7 @@ import com.cleaningservices.utilities.Connector;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public abstract class AbstractEntity implements IDAO {
+public abstract class AbstractDAO implements IDAO {
     Connector connector = new Connector();
     @Override
     public void actualizar(Integer id, String tabla, String column, String value) {

@@ -1,11 +1,18 @@
 package com.cleaningservices;
 
+import com.cleaningservices.daoimpl.*;
 import com.cleaningservices.entity.*;
 
 import java.time.LocalDate;
 
 public class Main {
     public static void main(String[] args) {
+        CategoriaProductoDAO categoriaProductoDAO = new CategoriaProductoDAO();
+        EmpleadoDAO empleadoDAO = new EmpleadoDAO();
+        MetodoPagoDAO metodoPagoDAO = new MetodoPagoDAO();
+        OrdenCompraDAO ordenCompraDAO = new OrdenCompraDAO();
+        ProductoDAO productoDAO = new ProductoDAO();
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
 
         UsuarioEntity usuario = new UsuarioEntity("Lin", "Yasira",
                 "Quintero", "lyqs@hotmail", 3206789567L,
@@ -22,6 +29,7 @@ public class Main {
                 "LB", 5000);
 
         OrdenCompraEntity ordenCompra = new OrdenCompraEntity(1 ,10, 1, 1, LocalDate.now(), 1, 5000);
+
 
     }
 }
