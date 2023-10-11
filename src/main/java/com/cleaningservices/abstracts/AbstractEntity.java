@@ -1,15 +1,12 @@
 package com.cleaningservices.abstracts;
 
-import com.cleaningservices.crudinterfaces.IActualizar;
-import com.cleaningservices.crudinterfaces.IEliminar;
-import com.cleaningservices.crudinterfaces.IInsertar;
-import com.cleaningservices.crudinterfaces.IMostrarTabla;
+import com.cleaningservices.daointerface.*;
 import com.cleaningservices.utilities.Connector;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public abstract class AbstractEntity implements IActualizar, IMostrarTabla, IInsertar, IEliminar {
+public abstract class AbstractEntity implements IDAO {
     Connector connector = new Connector();
     @Override
     public void actualizar(Integer id, String tabla, String column, String value) {
