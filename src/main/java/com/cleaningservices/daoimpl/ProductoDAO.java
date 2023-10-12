@@ -26,7 +26,10 @@ public class ProductoDAO extends AbstractDAO {
                 statement.setString(3, producto.getMedidaProducto());
                 statement.setDouble(4, producto.getPrecioProducto());
                 statement.executeUpdate();
-
+                System.out.println("Se ha insertado el producto: " + producto.getNombreProducto() + " " +
+                        producto.getCategoriaProducto() + " " +
+                        producto.getMedidaProducto() + " " +
+                        producto.getPrecioProducto());
             } catch (SQLException e) {
                 System.out.println("Error SQL: " + e.getMessage());
                 e.printStackTrace();

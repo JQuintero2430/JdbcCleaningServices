@@ -17,6 +17,7 @@ public abstract class AbstractDAO implements IDAO {
             statement.setString(1, value);
             statement.setInt(2, id);
             statement.executeUpdate();
+            System.out.println("Se ha actualizado el campo: " + column + " con el valor: " + value);
         } catch (SQLException e) {
             System.out.println("Error SQL: " + e.getMessage());
             e.printStackTrace();
@@ -32,6 +33,7 @@ public abstract class AbstractDAO implements IDAO {
 
         try (PreparedStatement statement = connector.getConnection().prepareStatement(queryEliminarUsuario)) {
             statement.setInt(1, id);
+            System.out.println("Se ha eliminado el usuario con el id: " + id);
         } catch (SQLException e) {
             System.out.println("Error SQL: " + e.getMessage());
             e.printStackTrace();

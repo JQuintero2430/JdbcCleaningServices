@@ -19,7 +19,7 @@ public class Main {
                 LocalDate.of(1993,11, 30));
 
         EmpleadoEntity empleado = new EmpleadoEntity("EJECUTIVO","CAJERO",
-                "CC", 123456722l, 3);
+                "CC", 1213456565l, 5);
 
         CategoriaProductoEntity categoriaProducto = new CategoriaProductoEntity("LIMPIEZA HOGAR", "DETERGENTE");
 
@@ -29,6 +29,8 @@ public class Main {
                 "LB", 5000);
 
         OrdenCompraEntity ordenCompra = new OrdenCompraEntity(1 ,10, 1, 1, LocalDate.now(), 1, 5000);
+
+        empleadoDAO.mostrarTabla();
 
 
     }

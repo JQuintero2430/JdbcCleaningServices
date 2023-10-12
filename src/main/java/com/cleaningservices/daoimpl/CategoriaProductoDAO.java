@@ -25,6 +25,8 @@ public class CategoriaProductoDAO extends AbstractDAO {
                 statement.setString(1, categoriaProducto.getNombreCategoriaProducto());
                 statement.setString(2, categoriaProducto.getTipoCategoriaProducto());
                 statement.executeUpdate();
+                System.out.println("Se ha insertado la categoria de producto: " + categoriaProducto.getNombreCategoriaProducto() + " " +
+                        categoriaProducto.getTipoCategoriaProducto());
             } catch (SQLException e) {
                 System.out.println("Error SQL: " + e.getMessage());
                 e.printStackTrace();

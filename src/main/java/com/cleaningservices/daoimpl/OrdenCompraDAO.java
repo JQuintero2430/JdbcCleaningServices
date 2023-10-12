@@ -29,6 +29,13 @@ public class OrdenCompraDAO extends AbstractDAO {
                 statement.setInt(6, ordenCompra.getMetodoPagoIdOrdenCompra());
                 statement.setDouble(7, ordenCompra.getPrecioOrdenCompra());
                 statement.executeUpdate();
+                System.out.println("Se ha insertado la orden de compra: " + ordenCompra.getCompradorIdOrdenCompra() + " " +
+                        ordenCompra.getVendedorIdOrdenCompra() + " " +
+                        ordenCompra.getProductoIdOrdenCompra() + " " +
+                        ordenCompra.getCantidadOrdenCompra() + " " +
+                        ordenCompra.getFechaOrdenCompra() + " " +
+                        ordenCompra.getMetodoPagoIdOrdenCompra() + " " +
+                        ordenCompra.getPrecioOrdenCompra());
             } catch (SQLException e) {
                 System.out.println("Error SQL: " + e.getMessage());
                 e.printStackTrace();

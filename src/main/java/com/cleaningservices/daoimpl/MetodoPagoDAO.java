@@ -24,6 +24,7 @@ public class MetodoPagoDAO extends AbstractDAO {
             try (PreparedStatement statement = connector.getConnection().prepareStatement(queryAddMetodoPago)) {
                 statement.setString(1, metodoPago.getNombreMetodoPago());
                 statement.executeUpdate();
+                System.out.println("Se ha insertado el metodo de pago: " + metodoPago.getNombreMetodoPago());
             } catch (SQLException e) {
                 System.out.println("Error SQL: " + e.getMessage());
                 e.printStackTrace();
