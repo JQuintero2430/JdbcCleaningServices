@@ -27,6 +27,11 @@ public class EmpleadoDAO extends AbstractDAO {
                 statement.setLong(4, empleado.getNumeroDocumentoEmpleado());
                 statement.setInt(5, empleado.getIdUsuario());
                 statement.executeUpdate();
+                System.out.println("Se ha insertado el empleado: " + empleado.getPosicionEmpleado() + " " +
+                        empleado.getRolEmpleado() + " " +
+                        empleado.getTipoDocumentoEmpleado() + " " +
+                        empleado.getNumeroDocumentoEmpleado() + " " +
+                        empleado.getIdUsuario());
             } catch (SQLException e) {
                 System.out.println("Error SQL: " + e.getMessage());
                 e.printStackTrace();

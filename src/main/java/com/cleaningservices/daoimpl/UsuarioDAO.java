@@ -26,7 +26,13 @@ public class UsuarioDAO extends AbstractDAO {
                 statement.setLong(5, usuario.getTelefonoUsuario());
                 statement.setDate(6, Date.valueOf(usuario.getFechaNacimientoUsuario()));
                 statement.executeUpdate();
-
+                System.out.println("Se ha insertado el usuario: " + usuario.getNombreUsuario() + " " +
+                        usuario.getApellidoPaternoUsuario() + " " +
+                        usuario.getApellidoMaternoUsuario() + " " +
+                        usuario.getEmailUsuario() + " " +
+                        usuario.getTelefonoUsuario() + " " +
+                        usuario.getFechaNacimientoUsuario()
+                );
             } catch (SQLException e) {
                 System.out.println("Error SQL: " + e.getMessage());
                 e.printStackTrace();
