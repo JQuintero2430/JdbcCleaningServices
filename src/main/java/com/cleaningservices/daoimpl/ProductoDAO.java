@@ -2,7 +2,7 @@ package com.cleaningservices.daoimpl;
 
 
 import com.cleaningservices.abstracts.AbstractDAO;
-import com.cleaningservices.entity.ProductoEntity;
+import com.cleaningservices.models.ProductoEntity;
 import com.cleaningservices.utilities.Connector;
 
 import java.sql.PreparedStatement;

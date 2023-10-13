@@ -3,11 +3,10 @@ package com.cleaningservices.daoimpl;
 
 
 import com.cleaningservices.abstracts.AbstractDAO;
-import com.cleaningservices.entity.OrdenCompraEntity;
+import com.cleaningservices.models.OrdenCompraEntity;
 import com.cleaningservices.utilities.Connector;
 
 import java.sql.*;
-import java.time.LocalDate;
 
 public class OrdenCompraDAO extends AbstractDAO {
 
