@@ -1,4 +1,4 @@
-package com.cleaningservices.entity;
+package com.cleaningservices.models;
 
 public class ProductoEntity {
     private int idProducto;

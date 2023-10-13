@@ -1,7 +1,7 @@
 package com.cleaningservices;
 
 import com.cleaningservices.daoimpl.*;
-import com.cleaningservices.entity.*;
+import com.cleaningservices.models.*;
 
 import java.time.LocalDate;
 
@@ -16,9 +16,9 @@ public class Main {
 
         UsuarioEntity usuario = new UsuarioEntity("Lin", "Yasira",
                 "Quintero", "lyqs@hotmail", 3206789567L,
-                LocalDate.of(1993,11, 30));
+                LocalDate.of(1993, 11, 30));
 
-        EmpleadoEntity empleado = new EmpleadoEntity("EJECUTIVO","CAJERO",
+        EmpleadoEntity empleado = new EmpleadoEntity("EJECUTIVO", "CAJERO",
                 "CC", 1213456565l, 5);
 
         CategoriaProductoEntity categoriaProducto = new CategoriaProductoEntity("LIMPIEZA HOGAR", "DETERGENTE");
@@ -28,10 +28,10 @@ public class Main {
         ProductoEntity producto = new ProductoEntity("DETERGENTE", 1,
                 "LB", 5000);
 
-        OrdenCompraEntity ordenCompra = new OrdenCompraEntity(1 ,10, 1, 1, LocalDate.now(), 1, 5000);
+        OrdenCompraEntity ordenCompra = new OrdenCompraEntity(1, 10, 1, 1, LocalDate.now(), 1, 5000);
 
         empleadoDAO.mostrarTabla();
 
-
+        usuarioDAO.insertar(usuario);
     }
 }

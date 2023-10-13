@@ -1,4 +1,4 @@
-package com.cleaningservices.entity;
+package com.cleaningservices.models;
 
 public class MetodoPagoEntity {
     private int idMetodoPago;

@@ -2,7 +2,7 @@ package com.cleaningservices.daoimpl;
 
 
 import com.cleaningservices.abstracts.AbstractDAO;
-import com.cleaningservices.entity.MetodoPagoEntity;
+import com.cleaningservices.models.MetodoPagoEntity;
 import com.cleaningservices.utilities.Connector;
 
 import java.sql.PreparedStatement;

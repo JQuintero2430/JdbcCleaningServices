@@ -1,11 +1,10 @@
 package com.cleaningservices.daoimpl;
 
 import com.cleaningservices.abstracts.AbstractDAO;
-import com.cleaningservices.entity.UsuarioEntity;
+import com.cleaningservices.models.UsuarioEntity;
 import com.cleaningservices.utilities.Connector;
 
 import java.sql.*;
-import java.time.LocalDate;
 
 public class UsuarioDAO extends AbstractDAO {
 
