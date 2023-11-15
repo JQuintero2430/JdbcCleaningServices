@@ -8,7 +8,7 @@ import java.sql.*;
 
 public class UsuarioDAO extends AbstractDAO {
 
-    Connector connector = new Connector();
+    Connector connector =  Connector.getInstance();
     @Override
     public void insertar(Object entidad) {
         if (entidad instanceof UsuarioEntity) {

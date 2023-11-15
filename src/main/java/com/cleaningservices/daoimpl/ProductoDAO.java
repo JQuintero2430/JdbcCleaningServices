@@ -12,7 +12,7 @@ import java.sql.Statement;
 
 public class ProductoDAO extends AbstractDAO {
 
-    Connector connector = new Connector();
+    Connector connector =  Connector.getInstance();
     @Override
     public void insertar(Object entidad) {
         if (entidad instanceof ProductoEntity) {

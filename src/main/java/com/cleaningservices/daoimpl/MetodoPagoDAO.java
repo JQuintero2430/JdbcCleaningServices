@@ -12,7 +12,7 @@ import java.sql.Statement;
 
 public class MetodoPagoDAO extends AbstractDAO {
 
-    Connector connector = new Connector();
+    Connector connector = Connector.getInstance();
 
     @Override
     public void insertar(Object entidad) {

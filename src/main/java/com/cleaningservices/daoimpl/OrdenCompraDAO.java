@@ -10,7 +10,7 @@ import java.sql.*;
 
 public class OrdenCompraDAO extends AbstractDAO {
 
-    Connector connector = new Connector();
+    Connector connector =  Connector.getInstance();
 
     @Override
     public void insertar(Object entidad) {

@@ -11,7 +11,7 @@ import java.sql.Statement;
 
 public class EmpleadoDAO extends AbstractDAO {
 
-    Connector connector = new Connector();
+    Connector connector = Connector.getInstance();
 
     @Override
     public void insertar(Object entidad) {

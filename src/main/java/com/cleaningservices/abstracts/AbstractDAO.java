@@ -7,7 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public abstract class AbstractDAO implements IDAO {
-    Connector connector = new Connector();
+    Connector connector = Connector.getInstance();
     @Override
     public void actualizar(Integer id, String tabla, String column, String value) {
 
