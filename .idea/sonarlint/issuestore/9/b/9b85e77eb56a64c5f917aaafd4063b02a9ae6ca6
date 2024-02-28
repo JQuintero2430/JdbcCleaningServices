@@ -1,0 +1,39 @@
+
+Z
+java:S1854"?Remove this useless assignment to local variable "ordenCompra".(öÔÖ¢üÿÿÿÿ
+W
+java:S1854"<Remove this useless assignment to local variable "producto".(¸´ Çýÿÿÿÿ
+T
+java:S1854">Remove this useless assignment to local variable "metodoPago".(«šå–
+[
+java:S1854"ERemove this useless assignment to local variable "categoriaProducto".(ð¾¿¤
+R
+java:S1854"<Remove this useless assignment to local variable "empleado".(«ü§’
+Z
+java:S1854"?Remove this useless assignment to local variable "productoDAO".(Áçü¶ýÿÿÿÿ
+]
+java:S1854"BRemove this useless assignment to local variable "ordenCompraDAO".(Ó§åäùÿÿÿÿ
+\
+java:S1854"ARemove this useless assignment to local variable "metodoPagoDAO".(ÍÚ‘›ÿÿÿÿÿ
+c
+java:S1854
+"HRemove this useless assignment to local variable "categoriaProductoDAO".(¼ÜÇøÿÿÿÿ
+T
+java:S1481
+"9Remove this unused "categoriaProductoDAO" local variable.(¼ÜÇøÿÿÿÿ
+M
+java:S1481"2Remove this unused "metodoPagoDAO" local variable.(ÍÚ‘›ÿÿÿÿÿ
+N
+java:S1481"3Remove this unused "ordenCompraDAO" local variable.(Ó§åäùÿÿÿÿ
+K
+java:S1481"0Remove this unused "productoDAO" local variable.(Áçü¶ýÿÿÿÿ
+C
+java:S1481"-Remove this unused "empleado" local variable.(«ü§’
+L
+java:S1481"6Remove this unused "categoriaProducto" local variable.(ð¾¿¤
+E
+java:S1481"/Remove this unused "metodoPago" local variable.(«šå–
+H
+java:S1481"-Remove this unused "producto" local variable.(¸´ Çýÿÿÿÿ
+K
+java:S1481"0Remove this unused "ordenCompra" local variable.(öÔÖ¢üÿÿÿÿ
