@@ -4,7 +4,7 @@ import com.cleaningservices.daoimpl.*;
 import com.cleaningservices.models.*;
 
 import java.time.LocalDate;
-
+// implementación manual. Se debe optimizar
 public class Main {
     public static void main(String[] args) {
         CategoriaProductoDAO categoriaProductoDAO = new CategoriaProductoDAO();
